@@ -109,6 +109,7 @@ variable in_security_group_id {
 variable in_subnet_ids {
     description = "IDs of subnets the network interfaces are attached to."
     type = list
+    default = "[]"
 }
 
 
