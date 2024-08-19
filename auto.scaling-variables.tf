@@ -106,12 +106,11 @@ variable in_security_group_id {
 ### in_subnet_ids ###
 ### ########################## ###
 
-variable in_subnet_ids {
-    description = "IDs of subnets the network interfaces are attached to."
-    type = list
-
+variable "in_subnet_ids" {
+  description = "IDs of subnets the network interfaces are attached to."
+  type        = list(string)
+  default     = []  # Default to an empty list
 }
-
 
 ### ################ ###
 ### in_mandated_tags ###
