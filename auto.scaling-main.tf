@@ -63,7 +63,7 @@ resource "aws_launch_configuration" "this" {
     iam_instance_profile = var.in_instance_profile_id
     key_name             = aws_key_pair.ssh.id
     security_groups      = [var.in_security_group_id]
-    user_data            = var.in_user_data_script != "" ? var.in_user_data_script : null
+    user_data            = base64encode(var.in_user_data_script)
 
   lifecycle {
     create_before_destroy = true
