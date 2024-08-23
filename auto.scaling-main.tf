@@ -56,21 +56,20 @@ resource aws_autoscaling_group this {
  | --   f) the user data scripts are run after the instance boots up
  | --
 */
-resource aws_launch_configuration this {
-
-    name_prefix          = "${ var.in_ecosystem }-launch-config-${ var.in_timestamp }"
+resource "aws_launch_configuration" "this" {
+    name_prefix          = "${var.in_ecosystem}-launch-config-${var.in_timestamp}"
     image_id             = var.in_ami_id
     instance_type        = var.in_instance_type
     iam_instance_profile = var.in_instance_profile_id
     key_name             = aws_key_pair.ssh.id
-    security_groups      = [ var.in_security_group_id ]
-    user_data            = var.in_user_data_script
+    security_groups      = [var.in_security_group_id]
+    user_data            = var.in_user_data_script != "" ? var.in_user_data_script : null
 
-    lifecycle {
-        create_before_destroy = true
-    }
-
+  lifecycle {
+    create_before_destroy = true
+  }
 }
+
 
 
 /*
